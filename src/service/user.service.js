@@ -3,10 +3,6 @@ const User = require('../model/user.model')
 class UserService {
     async createUser(username, password){
         //插入数据
-        /*User.create({
-            username: username,
-            password: password,
-        })*/
         const res = await User.create({username, password});
         // console.log(res)
 
