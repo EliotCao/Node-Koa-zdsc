@@ -23,6 +23,19 @@ class UserService {
 
         return res ? res.dataValues : null
     }
+
+    async updateById({id, username, password, is_admin}) {
+        const whereOpt = {id}
+        const newUser = {}
+
+        username && Object.assign(newUser, {username})
+        password && Object.assign(newUser, {password})
+        is_admin && Object.assign(newUser, {is_admin})
+
+        const res = await User.update(newUser, {where: whereOpt})
+        console.log(res)
+        return res[0] > 0
+    }
 }
 
 module.exports = new UserService()
