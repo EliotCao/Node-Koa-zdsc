@@ -10,7 +10,6 @@ const router = new Router({prefix: '/goods'})
 router.post('/upload', auth, hadAdminPermission, upload)
 
 //发布商品接口
-
 router.post('/', auth, hadAdminPermission, goodsValidator, creat)
 
 module.exports = router
