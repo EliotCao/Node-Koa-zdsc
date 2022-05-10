@@ -1,16 +1,28 @@
+const path = require('path')
+
 const Koa = require('koa')
 const KoaBody = require('koa-body')
+const KoaStatic = require('koa-static')
+const KoaParameter = require('koa-parameter')
 
 const errHandler = require('./errHandler');
-// const userRouter = require('../router/user.route')
-// const goodsRouter = require('../router/goods.route')
 const router = require('../router/index')
 
 const app = new Koa()
 
-app.use(KoaBody())
-/*app.use(userRouter.routes())
-app.use(goodsRouter.routes())*/
+// console.log(process.cwd())
+app.use(KoaBody({
+    multipart: true,
+    formidable: {
+        // 配置选项里，不推荐使用相对路径
+        // 在option里的相对路径，不是相对当前问渐渐，相对process.cwd()
+        uploadDir: path.join(__dirname, '../uploads'),
+        keepExtensions: true
+    }
+}))
+app.use(KoaParameter(app))
+
+app.use(KoaStatic(path.join(__dirname, '../uploads')))
 app.use(router.routes())
 app.use(router.allowedMethods())
 
