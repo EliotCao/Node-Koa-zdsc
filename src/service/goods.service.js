@@ -7,6 +7,15 @@ class GoodsService {
 
         return res.dataValues
     }
+
+    async updateGoods(id, goods){
+        try {
+            const res = await Goods.update(goods, {where: {id}})
+            return res[0] > 0
+        }catch (err){
+            console.error(err)
+        }
+    }
 }
 
 module.exports = new GoodsService()
