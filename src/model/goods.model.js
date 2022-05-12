@@ -24,6 +24,8 @@ const Goods = seq.define('zd_goods', {
         allowNull: false,
         comment: '商品图片的URL地址'
     }
+},{
+    paranoid: true
 })
 
 //强制同步数据库(创建数据库)
