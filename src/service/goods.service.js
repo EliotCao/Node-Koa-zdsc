@@ -16,6 +16,11 @@ class GoodsService {
             console.error(err)
         }
     }
+
+    async removeGoods(id){
+        const res = await Goods.destroy({where:{id}})
+        return res[0] > 0
+    }
 }
 
 module.exports = new GoodsService()

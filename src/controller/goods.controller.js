@@ -1,7 +1,7 @@
 const path = require('path')
 
 const {fileUploadError, unSupportFileType, publishGoodsError, invalidGoodsID} = require('../constant/err.type')
-const {createGoods, updateGoods} = require('../service/goods.service')
+const {createGoods, updateGoods, removeGoods} = require('../service/goods.service')
 
 class GoodsController {
     async upload(ctx, next) {
@@ -60,6 +60,16 @@ class GoodsController {
             }
         }catch (err){
             console.error(err)
+        }
+    }
+
+    async remove(ctx){
+        await removeGoods(ctx.params.id)
+
+        ctx.body = {
+            code: 0,
+            message: '删除商品成功',
+            result: ''
         }
     }
 }
