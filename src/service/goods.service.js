@@ -28,11 +28,13 @@ class GoodsService {
     }
 
     async findGoods(pageNum, pageSize){
-        //1.获取总数
+        /*//1.获取总数
         const count = await Goods.count()
         //2.获取分页数据
         const offset = (pageNum - 1) * pageSize
-        const rows = Goods.findAll({offset: offset, limit: pageSize})
+        const rows = Goods.findAll({offset: offset, limit: pageSize})*/
+        const offset = (pageNum - 1) * pageSize
+        const {count, rows} = Goods.findAndCountAll({offset: offset, limit: pageSize * 1})
 
         return {
             pageNum,
