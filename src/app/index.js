@@ -18,7 +18,8 @@ app.use(KoaBody({
         // 在option里的相对路径，不是相对当前问渐渐，相对process.cwd()
         uploadDir: path.join(__dirname, '../uploads'),
         keepExtensions: true
-    }
+    },
+    parsedMethods: ['POST', 'PUT', 'PATCH','DELETE']
 }))
 app.use(KoaParameter(app))
 
