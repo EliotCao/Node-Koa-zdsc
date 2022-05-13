@@ -9,7 +9,8 @@ const {
 const {
     createGoods,
     removeGoods,
-    restoreGoods
+    restoreGoods,
+    findGoods
 } = require('../service/goods.service')
 
 class GoodsController {
@@ -97,6 +98,19 @@ class GoodsController {
             }
         }else {
             return ctx.app.emit('error', invalidGoodsID, ctx)
+        }
+    }
+
+    async findAll(ctx){
+        //1.解析pageNum和pageSize
+        const {pageNum, pageSize} = ctx.request.query
+        //2.调用数据处理得相关方法
+        const res = await findGoods(pageNum, pageSize)
+        //3.返回结果
+        ctx.body = {
+            code: 0,
+            message: '获取商品列表成功',
+            result: res,
         }
     }
 }
