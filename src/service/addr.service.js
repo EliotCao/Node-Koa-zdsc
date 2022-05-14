@@ -13,6 +13,10 @@ class AddrService {
             }
         })
     }
+
+    async updateAddr(id, addr) {
+        return await Address.update(addr, {where: {id}})
+    }
 }
 
 module.exports = new AddrService()
