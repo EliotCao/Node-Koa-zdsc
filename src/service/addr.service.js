@@ -21,6 +21,12 @@ class AddrService {
     async removeAddr(id) {
         return await Address.destroy({where: {id}})
     }
+
+    async setDefaultAddr(user_id, id) {
+        await Address.update({id_default: 0}, {where: {user_id}})
+
+        return await Address.update({id_default: 1}, {where: {id}})
+    }
 }
 
 module.exports = new AddrService()

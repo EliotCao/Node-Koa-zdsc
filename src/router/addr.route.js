@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const {auth} = require('../middleware/auth.middleware')
 const {validator} = require('../middleware/addr.middleware')
-const {create, findAll, update, remove} = require('../controller/addr.controller')
+const {create, findAll, update, remove, setDefault} = require('../controller/addr.controller')
 
 const router = new Router({prefix: '/address'})
 
@@ -24,5 +24,7 @@ router.put('/:id', auth, validator({
 
 //删除地址
 router.delete('/:id', auth, remove)
+
+router.patch('/:id', auth, setDefault)
 
 module.export = router
