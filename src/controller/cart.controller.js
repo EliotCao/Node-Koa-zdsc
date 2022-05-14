@@ -1,4 +1,4 @@
-const {creatOrUpdate, findCarts, updateCarts, removeCarts} = require('../service/cart.service')
+const {creatOrUpdate, findCarts, updateCarts, removeCarts, selectAllCarts} = require('../service/cart.service')
 const {cartFormatError} = require('../constant/err.type')
 
 class CartController {
@@ -57,6 +57,16 @@ class CartController {
         ctx.body = {
             code: 0,
             message: '删除购物车陈工',
+            result: res
+        }
+    }
+
+    async selectAll(ctx) {
+        const user_id = ctx.state.user.id
+        const res = await selectAllCarts(user_id)
+        ctx.body = {
+            code: 0,
+            message: '全部选中',
             result: res
         }
     }
