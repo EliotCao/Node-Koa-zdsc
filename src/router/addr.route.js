@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const {auth} = require('../middleware/auth.middleware')
 const {validator} = require('../middleware/addr.middleware')
-const {create, findAll, update} = require('../controller/addr.controller')
+const {create, findAll, update, remove} = require('../controller/addr.controller')
 
 const router = new Router({prefix: '/address'})
 
@@ -21,5 +21,8 @@ router.put('/:id', auth, validator({
     phone: {type: 'string', format: /^1\d{10}$/},
     address: 'string'
 }), update)
+
+//删除地址
+router.delete('/:id', auth, remove)
 
 module.export = router

@@ -17,6 +17,10 @@ class AddrService {
     async updateAddr(id, addr) {
         return await Address.update(addr, {where: {id}})
     }
+
+    async removeAddr(id) {
+        return await Address.destroy({where: {id}})
+    }
 }
 
 module.exports = new AddrService()
